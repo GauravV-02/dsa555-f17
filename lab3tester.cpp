@@ -6,7 +6,7 @@
 /*     ./a.out                                              */
 /************************************************************/
 
-#include "lab3completed.h"
+#include "lab3.h"
 #include <iostream>
 
 int main(void){
