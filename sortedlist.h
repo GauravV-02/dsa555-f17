@@ -23,7 +23,7 @@ public:
 	};
 	class iterator:public const_iterator{
 	public:
-		iterator();
+		iterator(){}
 		iterator operator++(){}
 		iterator operator++(int){}
 		iterator operator--(){}
@@ -37,10 +37,10 @@ public:
 	SortedList& operator=(const SortedList& rhs);
 	SortedList(SortedList&& rhs);
 	SortedList& operator=(SortedList&& rhs);
-	iterator begin();
-	iterator end();
-	const_iterator begin() const;
-	const_iterator end() const;
+	iterator begin(){}
+	iterator end(){}
+	const_iterator begin() const{}
+	const_iterator end() const{}
 	iterator insert(const T& data);
 	iterator search(const T& data);
 	const_iterator search(const T& data) const;
