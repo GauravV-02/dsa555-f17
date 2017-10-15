@@ -2,6 +2,8 @@
 /*                                                                   */
 /* Tester for DSA555 assignment 1, question 2                        */
 /*                                                                   */
+/* version 2: added additional check                                 */
+/*                                                                   */
 /* copy your file a1q2.cpp to this folder.  As there are many data   */
 /* files and the tester will generate files that you can use for     */
 /* checking the result, it will be cleaner to do it this way.        */
@@ -148,6 +150,11 @@ bool testPath(const Maze* original,const Maze* marked, Coord start, Coord end, c
 			curr.set(j,i);
 			if(marked->isMarked(curr)){
 				if(!search(curr,path,n)){
+					isGood = false;
+				}
+			}
+			else{
+				if(search(curr,path,n)){
 					isGood = false;
 				}
 			}
