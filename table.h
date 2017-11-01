@@ -1,3 +1,11 @@
+/*************************************************************/
+/*    V 1.1:                                                 */
+/*      - added prototypes for numRecords() and isEmpty()    */
+/*      - coded isEmpty() and numRecords() in SimpleTable    */
+/*      - created empty functions for isEmpty() and          */
+/*        numRecords() in LPTable                            */
+/*************************************************************/
+
 #include <string>
 #include <utility>
 using namespace std;
@@ -9,6 +17,8 @@ public:
 	virtual bool update(const string& key, const TYPE& value)=0;
 	virtual bool remove(const string& key)=0;
 	virtual bool find(const string& key, TYPE& value)=0;
+	virtual int numRecords() const = 0;
+	virtual bool isEmpty() const = 0;
 	virtual ~Table(){}
 };
 
@@ -41,6 +51,8 @@ public:
 	virtual const SimpleTable& operator=(const SimpleTable& other);
 	virtual const SimpleTable& operator=(SimpleTable&& other);
 	virtual ~SimpleTable();
+	virtual bool isEmpty() const{return size_==0;}
+	virtual int numRecords() const{return size_;}
 };
 
 
@@ -84,8 +96,6 @@ void SimpleTable<TYPE>::grow(){
 	records_=newArray;
 }
 
-/* none of the code in the function definitions below are correct.  You can replace what you need
-*/
 template <class TYPE>
 SimpleTable<TYPE>::SimpleTable(int maxExpected): Table<TYPE>(){
 	records_=new Record*[maxExpected];
@@ -196,7 +206,7 @@ SimpleTable<TYPE>::~SimpleTable(){
 template <class TYPE>
 class LPTable:public Table<TYPE>{
 public:
-	LPTable(int maxExpected);
+	LPTable(int maxExpected,double percentOpen);
 	LPTable(const LPTable& other);
 	LPTable(LPTable&& other);
 	virtual bool update(const string& key, const TYPE& value);
@@ -205,11 +215,12 @@ public:
 	virtual const LPTable& operator=(const LPTable& other);
 	virtual const LPTable& operator=(LPTable&& other);
 	virtual ~LPTable();
+	virtual bool isEmpty() const {}
+	virtual int numRecords() const {}
+
 };
-/* none of the code in the function definitions below are correct.  You can replace what you need
-*/
 template <class TYPE>
-LPTable<TYPE>::LPTable(int maxExpected): Table<TYPE>(){
+LPTable<TYPE>::LPTable(int maxExpected,double percentOpen): Table<TYPE>(){
 
 }
 
