@@ -66,8 +66,8 @@ int main(int argc, char* argv[]){
   Timer stopwatch;
   ofstream log("mergelog.txt");
   for(int i=0;i<size;i++){
-    myarr[i]=rand();
-//    myarr[i]=i+1;
+//    myarr[i]=rand();
+    myarr[i]=i+1;
   }
   stopwatch.start();
   MergeSort(myarr,size);
