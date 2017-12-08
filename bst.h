@@ -52,7 +52,45 @@ class BST{
 			delete subRoot;
 		}
 	}
+	//this function recursively finds the inorder successor.
+	//when it finds it, it is detached and returned.
+	Node* detachIS(Node*& subRoot){
 
+	}
+	//this function removes node containing 
+	//data from tree who's root
+	//is subRoot
+	void remove(const T& data,Node*& subRoot){
+		if(subRoot!=nullptr){
+			if(data == subRoot->data_){
+				Node* rm=subRoot;
+				if(subRoot->left_==nullptr && subRoot->right_==nullptr){
+					subRoot=nullptr;
+				}
+				else if(subRoot->left_!=nullptr && subRoot->right_==nullptr){
+					//left child only
+					subRoot = subRoot->left_;
+				}
+				else if(subRoot->left_==nullptr && subRoot->right_!=nullptr){
+					//right child only
+					subRoot=subRoot->right_;
+				}
+				else{
+					Node* inOrderSuccessor=detachIS(subRoot->right_);
+					inOrderSuccessor->left_=subRoot->left_;
+					inOrderSuccessor->right_=subRoot->right_;
+					subRoot=inOrderSuccessor;
+				}	
+				delete rm;
+			}
+			else if(data < subRoot->left_){
+				remove(data, subRoot->left_);
+			}
+			else{
+				remove(data, subRoot->right_);
+			}
+		}
+	}
 public:
 	BST(){
 		root_=nullptr;
@@ -60,7 +98,9 @@ public:
 	void insert(const T& data){
 		insert(data,root_);
 	}
-	void remove(const T& data);
+	void remove(const T& data){
+		remove(data,root_);
+	}
 	//depthfirst
 	void preOrderPrint() const{
 		preOrderPrint(root_);		
