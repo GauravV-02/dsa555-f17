@@ -83,7 +83,7 @@ class BST{
 				}	
 				delete rm;
 			}
-			else if(data < subRoot->left_){
+			else if(data < subRoot->data_){
 				remove(data, subRoot->left_);
 			}
 			else{
