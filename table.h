@@ -220,7 +220,7 @@ public:
 
 };
 template <class TYPE>
-LPTable<TYPE>::LPTable(int maxExpected,double percentOpen): Table<TYPE>(){
+LPTable<TYPE>::LPTable(int maxExpected): Table<TYPE>(){
 
 }
 
